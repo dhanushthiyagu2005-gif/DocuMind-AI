@@ -14,6 +14,11 @@ import { suggestedQuestions } from '@/data/mockData';
 import type { ChatMessage } from '@/types';
 import { cn } from '@/lib/utils';
 
+
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8002";
+
+
 const STORAGE_KEY = 'documind-ai-chat-history';
 
 const welcomeMessage: ChatMessage = {
@@ -83,7 +88,7 @@ export function AIAssistant() {
     setTyping(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:8002/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
