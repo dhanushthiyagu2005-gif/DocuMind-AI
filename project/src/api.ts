@@ -1,5 +1,5 @@
 
-const API_URL = "http://127.0.0.1:8002";
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8002";
 
 // Check backend connection
 export async function checkBackend() {
@@ -12,7 +12,7 @@ export async function checkBackend() {
   return response.json();
 }
 
-// Get all documents from the backend
+// Get all documents
 export async function getDocuments() {
   const response = await fetch(`${API_URL}/api/documents`);
 
