@@ -12,7 +12,8 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-const API_URL = 'http://127.0.0.1:8002';
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8002";
 
 // Project interface
 interface Project {

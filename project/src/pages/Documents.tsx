@@ -6,7 +6,8 @@ import { StatusBadge, FileTypeBadge } from '@/components/ui/Badges';
 import { cn } from '@/lib/utils';
 import type { DocItem, DocType, DocStatus } from '@/types';
 
-
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8002";
 
 interface DocumentsProps {
   search: string;
@@ -41,7 +42,7 @@ const [error, setError] = useState('');
       setLoading(true);
       setError('');
 
-      const response = await fetch('http://127.0.0.1:8002/api/documents');
+    const response = await fetch(`${API_URL}/api/documents`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch documents');
@@ -101,10 +102,10 @@ const deleteDocument = async (id: string, filename: string) => {
   if (!confirmed) return;
 
   try {
-    const response = await fetch(
-      `http://127.0.0.1:8002/api/documents/${id}`,
-      { method: 'DELETE' }
-    );
+  const response = await fetch(
+  `${API_URL}/api/documents/${id}`,
+  { method: 'DELETE' }
+);
 
     if (!response.ok) {
       throw new Error('Failed to delete document');
